@@ -10,20 +10,24 @@ public class RandomBubblesort {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please enter the maximum a value : ");
         int max = scanner.nextInt();
+        long opttime=0;
 
-
-        int listnum[]= new int[10000];
+        int listnum[]= new int[100000];
 
         // creating random numbers less than 10000
-        for (int i=0; i<10000;i++)
+        for (int i=0; i<100000;i++)
         {
             listnum[i] = randInt(max);
 
         }
+
+        // timer and the bubble start here
         long starttime= System.currentTimeMillis();
-        BubbleSort (listnum); // function call here
+        opttime=BubbleSort (listnum); // function call here
         long endtime= System.currentTimeMillis();
         System.out.println("Time taken do the bubble sort " +(endtime-starttime));
+        System.out.println("Total number of operations " +opttime);
+        System.out.println("Time take to do one operation is " +(opttime*1000)/(endtime-starttime));
         /*for printing the values
         for ( int k = 0;  k < 10;  k++ )   //function to print
 
@@ -43,9 +47,10 @@ public class RandomBubblesort {
         return randomNum;
     }
 
-    public static void BubbleSort( int [ ] num )
+    public static long BubbleSort( int [ ] num)
     {
         int j;
+        long optnum=0;
         boolean flag = true;   // set flag to true to begin first pass
         int temp;   //holding variable
 
@@ -60,9 +65,11 @@ public class RandomBubblesort {
                     num[ j ] = num[ j+1 ];
                     num[ j+1 ] = temp;
                     flag = true;              //shows a swap occurred
+                    optnum++;
                 }
             }
         }
+        return optnum;
     }
 
 
